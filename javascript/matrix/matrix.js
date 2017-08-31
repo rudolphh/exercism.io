@@ -1,10 +1,10 @@
 
 function Matrix(matrix){
   this.rows = matrix.split('\n').map( row => row.split(' ').map(num => +num) );
-  this.columns = [];
-  this.rows.forEach((elem, i) => {
-		this.columns[i] = this.rows.map(item => item[i]);
-  });
+  this.columns = this.rows.reduce((cols, row, i) => {
+		cols[i] = this.rows.map(row => row[i]);
+    return cols;
+  }, []);
 }
 
 module.exports = Matrix;
